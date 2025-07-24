@@ -19,7 +19,7 @@ app.use(cors({
 const jobs = [
   {
     id: 1,
-    title: 'Senior Frontend Developer',
+    title: 'Junior Software Developer',
     department: 'Engineering',
     location: 'Remote',
     type: 'Full-time',
