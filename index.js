@@ -1,26 +1,12 @@
 const express = require('express');
-// const app = express();
-// const port = process.env.PORT || 3000;
-
-// app.get('/', (req, res) => {
-//   res.send('Hello from Render Node.js API!');
-// });
-
-// app.get('/api/data', (req, res) => {
-//   res.json({ message: 'Here is your data', data: [1, 2, 3] });
-// });
-
-// app.listen(port, () => {
-//   console.log(`Server running on port ${port}`);
-// });
-
-// src/index.ts
-import express, { Request, Response } from 'express';
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Mock job data (match your provided data)
+// Middleware to parse JSON (optional for GET, but good practice)
+app.use(express.json());
+
+// Mock job data
 const jobs = [
   {
     id: 1,
@@ -63,24 +49,19 @@ const jobs = [
   },
 ];
 
-// Define the Job interface
-interface Job {
-  id: number;
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  salary: string;
-  vacancies: number;
-  applications: number;
-  status: 'Open' | 'Closed' | 'Draft';
-  postedDate: string;
-  description: string;
-}
-
 // API endpoint to get jobs
-app.get('/api/jobs', (req: Request, res: Response) => {
+app.get('/api/jobs', (req, res) => {
   res.json(jobs);
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.send('Hello from Render Node.js API!');
+});
+
+// Data endpoint
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'Here is your data', data: [1, 2, 3] });
 });
 
 // Start the server
