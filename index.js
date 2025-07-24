@@ -1,10 +1,19 @@
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 // Middleware to parse JSON (optional for GET, but good practice)
 app.use(express.json());
+
+
+app.use(cors({
+  origin: 'http://localhost:3000', // Development origin
+  // For production, use your deployed Next.js URL (e.g., https://your-nextjs-app.com)
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allowed methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allowed headers
+}));
 
 // Mock job data
 const jobs = [
